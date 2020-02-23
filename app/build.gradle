@@ -44,7 +44,7 @@ dependencies {
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
     //View
-    implementation "com.mikepenz:materialdrawer:6.1.1"
+    implementation "com.mikepenz:materialdrawer:7.0.0"
     implementation 'com.aurelhubert:ahbottomnavigation:2.2.0'
     implementation 'com.wefika:flowlayout:0.4.1'
     implementation 'com.robertlevonyan.view:MaterialChipView:1.0.1'
