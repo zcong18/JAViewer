@@ -45,28 +45,28 @@ public class StartActivity extends AppCompatActivity {
         checkPermissions(); //检查权限，创建配置
     }
 
-    public void updateBtsoUrl() {
-        Request request = new Request.Builder()
-                .url("https://btso-url.zcong.workers.dev")
-                .build();
-        JAViewer.HTTP_CLIENT.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-            }
+    // public void updateBtsoUrl() {
+    //     Request request = new Request.Builder()
+    //             .url("https://btso-url.zcong.workers.dev")
+    //             .build();
+    //     JAViewer.HTTP_CLIENT.newCall(request).enqueue(new Callback() {
+    //         @Override
+    //         public void onFailure(Call call, IOException e) {
+    //         }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String url =  response.body().string();
-                if (url != "") {
-                    JAViewer.CONFIGURATIONS.setBtsoUrl(url);
-                }
-            }
-        });
-    }
+    //         @Override
+    //         public void onResponse(Call call, Response response) throws IOException {
+    //             String url =  response.body().string();
+    //             if (url != "") {
+    //                 JAViewer.CONFIGURATIONS.setBtsoUrl(url);
+    //             }
+    //         }
+    //     });
+    // }
 
     public void readProperties() {
         Request request = new Request.Builder()
-                .url("https://btso-url.zcong.workers.dev/config?t=" + System.currentTimeMillis() / 1000)
+                .url("https://jav-config-v1.netlify.com/jav.json?t=" + System.currentTimeMillis() / 1000)
                 .build();
         JAViewer.HTTP_CLIENT.newCall(request).enqueue(new Callback() {
             @Override
@@ -104,6 +104,8 @@ public class StartActivity extends AppCompatActivity {
             }
         }
 
+
+        JAViewer.CONFIGURATIONS.setBtsoUrl(properties.getBtsoUrl());
         // start();
 
         int currentVersion;
@@ -200,7 +202,7 @@ public class StartActivity extends AppCompatActivity {
         JAViewer.CONFIGURATIONS = Configurations.load(config);
 
         readProperties();
-        updateBtsoUrl();
+        // updateBtsoUrl();
     }
 
 }

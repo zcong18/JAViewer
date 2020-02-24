@@ -16,6 +16,8 @@ public class Properties {
     private String changelog;
     private List<DataSource> data_sources;
 
+    private String btso_url;
+
     public Properties() {
     }
 
@@ -33,5 +35,9 @@ public class Properties {
 
     public String getChangelog() {
         return changelog;
+    }
+
+    public String getBtsoUrl() {
+        return btso_url;
     }
 }
