@@ -14,6 +14,7 @@ import io.github.javiewer.adapter.item.Genre;
 import io.github.javiewer.adapter.item.Movie;
 import io.github.javiewer.adapter.item.MovieDetail;
 import io.github.javiewer.adapter.item.Screenshot;
+import io.github.javiewer.util.Helpers;
 
 import com.bosphere.filelogger.FL;
 
@@ -43,7 +44,7 @@ public class AVMOProvider {
                             img.attr("title"),  //标题
                             date.get(0).text(), //番号
                             date.get(1).text(), //日期
-                            img.attr("src"),    //图片地址
+                            Helpers.stringNullOrElse(img.attr("src"), img.attr("data-cfsrc")),    //图片地址
                             box.attr("href"),   //链接
                             hot                 //是否热门
                     )
@@ -68,7 +69,7 @@ public class AVMOProvider {
             actresses.add(
                     Actress.create(
                             span.text(),     //名字
-                            img.attr("src"), //图片地址
+                            Helpers.stringNullOrElse(img.attr("src"), img.attr("data-cfsrc")), //图片地址
                             box.attr("href") //链接
                     ));
         }
@@ -91,10 +92,10 @@ public class AVMOProvider {
         //Parsing Screenshots
         {
             for (Element box : document.select("[class*=sample-box]")) {
-                FL.d("screenshots", "href: %s link: %s", box.attr("href"), box.getElementsByTag("img").first().attr("src"));
+                Element img = box.getElementsByTag("img").first();
                 movie.screenshots.add(
                         Screenshot.create(
-                                box.getElementsByTag("img").first().attr("src"),
+                                Helpers.stringNullOrElse(img.attr("src"), img.attr("data-cfsrc")),
                                 box.attr("href")
                         )
                 );
@@ -104,10 +105,11 @@ public class AVMOProvider {
         //Parsing Actresses
         {
             for (Element box : document.select("[class*=avatar-box]")) {
+                Element img = box.getElementsByTag("img").first();
                 movie.actresses.add(
                         Actress.create(
                                 box.text(),
-                                box.getElementsByTag("img").first().attr("src"),
+                                Helpers.stringNullOrElse(img.attr("src"), img.attr("data-cfsrc")),
                                 box.attr("href")
                         )
                 );
