@@ -182,6 +182,6 @@ public class JAViewer extends Application {
                 .dir(new File(Environment.getExternalStorageDirectory(), "javiewer-new"))
                 .retentionPolicy(FLConst.RetentionPolicy.FILE_COUNT)
                 .build());
-        FL.setEnabled(true);
+        FL.setEnabled(false);
     }
 }
