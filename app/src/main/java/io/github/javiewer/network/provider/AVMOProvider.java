@@ -35,7 +35,7 @@ public class AVMOProvider {
 
             Elements date = span.select("date");
 
-            FL.d("movies", "%s %s", img.attr("title"), img.attr("src"));
+            FL.d("movies", "src: %s title: %s", img.attr("src"), img.attr("title"));
 
             movies.add(
                     Movie.create(
@@ -61,7 +61,7 @@ public class AVMOProvider {
             Element img = box.select("div.photo-frame > img").first();
             Element span = box.select("div.photo-info > span").first();
 
-            FL.d("actresses", "%s %s", span.text(), img.attr("src"));
+            FL.d("actresses", "src: %s name: %s", img.attr("src"), span.text());
 
             actresses.add(
                     Actress.create(
@@ -87,7 +87,7 @@ public class AVMOProvider {
         //Parsing Screenshots
         {
             for (Element box : document.select("[class*=sample-box]")) {
-                FL.d("screenshots", "%s %s", box.getElementsByTag("img").first().attr("src"), box.attr("href"));
+                FL.d("screenshots", "href: %s link: %s", box.attr("href"), box.getElementsByTag("img").first().attr("src"));
                 movie.screenshots.add(
                         Screenshot.create(
                                 box.getElementsByTag("img").first().attr("src"),
