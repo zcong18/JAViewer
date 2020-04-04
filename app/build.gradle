@@ -77,6 +77,8 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer:2.8.2'
     //Firebase
     implementation 'com.google.firebase:firebase-auth:18.1.0'
+    // File logger
+    implementation 'com.github.bosphere.android-filelogger:filelogger:1.0.7'
 
     testImplementation 'junit:junit:4.12'
     implementation 'com.jakewharton:butterknife:10.1.0'

@@ -15,6 +15,8 @@ import io.github.javiewer.adapter.item.Movie;
 import io.github.javiewer.adapter.item.MovieDetail;
 import io.github.javiewer.adapter.item.Screenshot;
 
+import com.bosphere.filelogger.FL;
+
 /**
  * Project: JAViewer
  */
@@ -32,6 +34,8 @@ public class AVMOProvider {
             boolean hot = span.getElementsByTag("i").size() > 0;
 
             Elements date = span.select("date");
+
+            FL.d("movies", "%s %s", img.attr("title"), img.attr("src"));
 
             movies.add(
                     Movie.create(
@@ -57,6 +61,8 @@ public class AVMOProvider {
             Element img = box.select("div.photo-frame > img").first();
             Element span = box.select("div.photo-info > span").first();
 
+            FL.d("actresses", "%s %s", span.text(), img.attr("src"));
+
             actresses.add(
                     Actress.create(
                             span.text(),     //名字
@@ -81,6 +87,7 @@ public class AVMOProvider {
         //Parsing Screenshots
         {
             for (Element box : document.select("[class*=sample-box]")) {
+                FL.d("screenshots", "%s %s", box.getElementsByTag("img").first().attr("src"), box.attr("href"));
                 movie.screenshots.add(
                         Screenshot.create(
                                 box.getElementsByTag("img").first().attr("src"),

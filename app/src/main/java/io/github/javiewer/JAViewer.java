@@ -42,6 +42,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 import retrofit2.Retrofit;
 
+import com.bosphere.filelogger.FL;
+import com.bosphere.filelogger.FLConfig;
+import com.bosphere.filelogger.FLConst;
+
 /**
  * Project: JAViewer
  */
@@ -172,5 +176,12 @@ public class JAViewer extends Application {
     public void onCreate() {
         super.onCreate();
         Fabric.with(this, new Crashlytics());
+        FL.init(new FLConfig.Builder(this)
+                .minLevel(FLConst.Level.V)
+                .logToFile(true)
+                .dir(new File(Environment.getExternalStorageDirectory(), "javiewer-new"))
+                .retentionPolicy(FLConst.RetentionPolicy.FILE_COUNT)
+                .build());
+        FL.setEnabled(true);
     }
 }
