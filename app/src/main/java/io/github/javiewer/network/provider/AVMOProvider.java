@@ -24,6 +24,7 @@ public class AVMOProvider {
 
     public static List<Movie> parseMovies(String html) {
         Document document = Jsoup.parse(html);
+        FL.d("moviesHtml", html);
 
         List<Movie> movies = new ArrayList<>();
 
@@ -54,6 +55,7 @@ public class AVMOProvider {
 
     public static List<Actress> parseActresses(String html) {
         Document document = Jsoup.parse(html);
+        FL.d("actressesHtml", html);
 
         List<Actress> actresses = new ArrayList<>();
 
@@ -77,6 +79,8 @@ public class AVMOProvider {
     public static MovieDetail parseMoviesDetail(String html) {
         Document document = Jsoup.parse(html);
         MovieDetail movie = new MovieDetail();
+
+        FL.d("detailHtml", html);
 
         //General Parsing
         {
