@@ -66,7 +66,7 @@ public class StartActivity extends AppCompatActivity {
 
     public void readProperties() {
         Request request = new Request.Builder()
-                .url("https://jav-config-v1.netlify.com/jav.json?t=" + System.currentTimeMillis() / 1000)
+                .url("https://jav-config-v1.now.sh/jav.json?t=" + System.currentTimeMillis() / 1000)
                 .build();
         JAViewer.HTTP_CLIENT.newCall(request).enqueue(new Callback() {
             @Override
